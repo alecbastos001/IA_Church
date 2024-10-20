@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/IA_Church/static/css/main.81671166.chunk.css",
-    "main.js": "/IA_Church/static/js/main.e33bab87.chunk.js",
-    "main.js.map": "/IA_Church/static/js/main.e33bab87.chunk.js.map",
+    "main.js": "/IA_Church/static/js/main.281a010c.chunk.js",
+    "main.js.map": "/IA_Church/static/js/main.281a010c.chunk.js.map",
     "runtime-main.js": "/IA_Church/static/js/runtime-main.d26fbab8.js",
     "runtime-main.js.map": "/IA_Church/static/js/runtime-main.d26fbab8.js.map",
     "static/js/2.f2117738.chunk.js": "/IA_Church/static/js/2.f2117738.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.d26fbab8.js",
     "static/js/2.f2117738.chunk.js",
     "static/css/main.81671166.chunk.css",
-    "static/js/main.e33bab87.chunk.js"
+    "static/js/main.281a010c.chunk.js"
   ]
 }
