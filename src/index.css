@@ -1,35 +1,35 @@
 /* Estilo global */
 body {
-  background-color: #e0d6b4; /* Cor de fundo com um tom de dourado suave, remete a um ambiente mais clássico */
+  background-color: #e0d6b4; /* Cor de fundo suave */
   font-family: 'Roboto', sans-serif; /* Fonte moderna */
-  color: #fff; /* Cor de texto branca para contraste */
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  text-align: center;
-  background-image: url('https://url_do_seu_fundo_pentecostal.jpg'); /* Imagem de fundo temática */
+  background-image: url('https://i.ytimg.com/vi/_kYY_D6olnA/maxresdefault.jpg'); /* Imagem de fundo temática */
   background-size: cover;
   background-position: center;
+  color: #fff; /* Cor de texto branca */
 }
 
 /* Estilo da transcrição */
 .transcription-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente para melhorar a legibilidade */
-  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente para destacar o texto */
+  padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   max-width: 80%;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra leve */
 }
 
 .transcription-text {
-  font-size: 48px; /* Tamanho grande para projeção */
-  font-weight: bold;
-  color: #f1f1f1; /* Cor clara com contraste forte para ser projetada */
-  line-height: 1.5;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para dar profundidade */
+  font-size: 50px; /* Fonte grande para projeção */
+  font-weight: bold; /* Deixa o texto em negrito */
+  color: #f9f9f9; /* Cor do texto clara para contraste */
+  line-height: 1.4;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para melhorar a leitura */
 }
 
 /* Botões */
@@ -37,11 +37,12 @@ button {
   background-color: #ffcc00;
   color: #333;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   margin-top: 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
+  font-weight: bold;
 }
 
 button:hover {

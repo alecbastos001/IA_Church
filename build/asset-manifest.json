@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/IA_Church/static/css/main.6b13cad4.chunk.css",
+    "main.css": "/IA_Church/static/css/main.3591ba8a.chunk.css",
     "main.js": "/IA_Church/static/js/main.469abf07.chunk.js",
     "main.js.map": "/IA_Church/static/js/main.469abf07.chunk.js.map",
     "runtime-main.js": "/IA_Church/static/js/runtime-main.d26fbab8.js",
@@ -8,13 +8,13 @@
     "static/js/2.f2117738.chunk.js": "/IA_Church/static/js/2.f2117738.chunk.js",
     "static/js/2.f2117738.chunk.js.map": "/IA_Church/static/js/2.f2117738.chunk.js.map",
     "index.html": "/IA_Church/index.html",
-    "static/css/main.6b13cad4.chunk.css.map": "/IA_Church/static/css/main.6b13cad4.chunk.css.map",
+    "static/css/main.3591ba8a.chunk.css.map": "/IA_Church/static/css/main.3591ba8a.chunk.css.map",
     "static/js/2.f2117738.chunk.js.LICENSE.txt": "/IA_Church/static/js/2.f2117738.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d26fbab8.js",
     "static/js/2.f2117738.chunk.js",
-    "static/css/main.6b13cad4.chunk.css",
+    "static/css/main.3591ba8a.chunk.css",
     "static/js/main.469abf07.chunk.js"
   ]
 }
