@@ -1,65 +1,56 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [transcript, setTranscript] = useState(''); // Para armazenar a transcrição
-  const [isRecording, setIsRecording] = useState(false); // Para controlar o estado de gravação
+  const [transcript, setTranscript] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
 
-  // Função para iniciar a gravação e reconhecimento de voz
   const handleStartRecording = () => {
-    // Verifica se o navegador suporta a API de reconhecimento de voz
     if (!('webkitSpeechRecognition' in window)) {
       alert('API de reconhecimento de voz não suportada no navegador.');
       return;
     }
 
-    // Instancia o reconhecimento de voz
     const recognition = new window.webkitSpeechRecognition();
-    recognition.continuous = true; // Continuar ouvindo até o stop
-    recognition.interimResults = true; // Mostrar resultados parciais (opcional)
-    recognition.lang = 'pt-BR'; // Definir o idioma (português Brasil)
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'pt-BR';  // Defina o idioma como português (Brasil)
 
-    // Iniciar o reconhecimento de voz
     recognition.start();
     setIsRecording(true);
 
-    // Manipula os resultados da gravação (transcrição)
     recognition.onresult = (event) => {
       let finalTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
-        finalTranscript += event.results[i][0].transcript; // Pega o texto transcrito
+        finalTranscript += event.results[i][0].transcript;
       }
-      setTranscript(finalTranscript); // Atualiza o estado com a transcrição
+      setTranscript(finalTranscript);
     };
 
-    // Se ocorrer erro no reconhecimento de voz
     recognition.onerror = (event) => {
       console.error('Erro de reconhecimento de voz:', event.error);
-      setIsRecording(false); // Parar gravação em caso de erro
+      setIsRecording(false);
     };
 
-    // Quando o reconhecimento de voz para automaticamente
     recognition.onend = () => {
-      setIsRecording(false); // Atualiza o estado para parar a gravação
+      setIsRecording(false);
     };
   };
 
-  // Função para parar a gravação
   const handleStopRecording = () => {
     if (window.webkitSpeechRecognition) {
-      window.webkitSpeechRecognition.stop(); // Para a gravação
-      setIsRecording(false); // Atualiza o estado
+      window.webkitSpeechRecognition.stop();
+      setIsRecording(false);
     }
   };
 
   return (
-    <div>
-      <h1>Legendas Automáticas para Igreja</h1>
-      {!isRecording ? (
-        <button onClick={handleStartRecording}>Iniciar Gravação</button>
-      ) : (
-        <button onClick={handleStopRecording}>Parar Gravação</button>
-      )}
-      <p>Transcrição: {transcript}</p> {/* Exibe a transcrição em tempo real */}
+    <div className="transcription-container">
+      <div className="transcription-text">
+        {transcript || 'Aguardando transcrição...'}
+      </div>
+      <button onClick={isRecording ? handleStopRecording : handleStartRecording}>
+        {isRecording ? 'Parar Gravação' : 'Iniciar Gravação'}
+      </button>
     </div>
   );
 }

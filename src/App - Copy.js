@@ -1,39 +1,65 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [transcript, setTranscript] = useState('');
+  const [transcript, setTranscript] = useState(''); // Para armazenar a transcrição
+  const [isRecording, setIsRecording] = useState(false); // Para controlar o estado de gravação
 
+  // Função para iniciar a gravação e reconhecimento de voz
   const handleStartRecording = () => {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
+    // Verifica se o navegador suporta a API de reconhecimento de voz
+    if (!('webkitSpeechRecognition' in window)) {
+      alert('API de reconhecimento de voz não suportada no navegador.');
+      return;
+    }
 
-      mediaRecorder.ondataavailable = function (e) {
-        const audioBlob = e.data;
-        const formData = new FormData();
-        formData.append('audio', audioBlob, 'audio.wav');
+    // Instancia o reconhecimento de voz
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.continuous = true; // Continuar ouvindo até o stop
+    recognition.interimResults = true; // Mostrar resultados parciais (opcional)
+    recognition.lang = 'pt-BR'; // Definir o idioma (português Brasil)
 
-        fetch('http://localhost:3001/upload-audio', {
-          method: 'POST',
-          body: formData,
-        })
-          .then(response => response.json())
-          .then(data => {
-            setTranscript(data.transcript);
-          });
-      };
+    // Iniciar o reconhecimento de voz
+    recognition.start();
+    setIsRecording(true);
 
-      setTimeout(() => {
-        mediaRecorder.stop();
-      }, 5000); // 5 segundos de gravação
-    });
+    // Manipula os resultados da gravação (transcrição)
+    recognition.onresult = (event) => {
+      let finalTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        finalTranscript += event.results[i][0].transcript; // Pega o texto transcrito
+      }
+      setTranscript(finalTranscript); // Atualiza o estado com a transcrição
+    };
+
+    // Se ocorrer erro no reconhecimento de voz
+    recognition.onerror = (event) => {
+      console.error('Erro de reconhecimento de voz:', event.error);
+      setIsRecording(false); // Parar gravação em caso de erro
+    };
+
+    // Quando o reconhecimento de voz para automaticamente
+    recognition.onend = () => {
+      setIsRecording(false); // Atualiza o estado para parar a gravação
+    };
+  };
+
+  // Função para parar a gravação
+  const handleStopRecording = () => {
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition.stop(); // Para a gravação
+      setIsRecording(false); // Atualiza o estado
+    }
   };
 
   return (
     <div>
       <h1>Legendas Automáticas para Igreja</h1>
-      <button onClick={handleStartRecording}>Iniciar Gravação</button>
-      <p>Transcrição: {transcript}</p>
+      {!isRecording ? (
+        <button onClick={handleStartRecording}>Iniciar Gravação</button>
+      ) : (
+        <button onClick={handleStopRecording}>Parar Gravação</button>
+      )}
+      <p>Transcrição: {transcript}</p> {/* Exibe a transcrição em tempo real */}
     </div>
   );
 }
