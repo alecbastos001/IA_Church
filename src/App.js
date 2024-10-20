@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [transcript, setTranscript] = useState('');
-  const [isRecording, setIsRecording] = useState(false);
+  const [transcript, setTranscript] = useState(''); // Para armazenar a transcrição
+  const [isRecording, setIsRecording] = useState(false); // Para controlar o estado de gravação
 
+  // Função para iniciar a gravação e reconhecimento de voz
   const handleStartRecording = () => {
     // Verifica se o navegador suporta a API de reconhecimento de voz
     if (!('webkitSpeechRecognition' in window)) {
@@ -11,37 +12,42 @@ function App() {
       return;
     }
 
+    // Instancia o reconhecimento de voz
     const recognition = new window.webkitSpeechRecognition();
-    recognition.continuous = true; // Grava continuamente
-    recognition.interimResults = false; // Não mostrar resultados intermediários
-    recognition.lang = 'pt-BR'; // Defina a língua, aqui para português (Brasil)
+    recognition.continuous = true; // Continuar ouvindo até o stop
+    recognition.interimResults = true; // Mostrar resultados parciais (opcional)
+    recognition.lang = 'pt-BR'; // Definir o idioma (português Brasil)
 
-    // Inicia a gravação
+    // Iniciar o reconhecimento de voz
     recognition.start();
     setIsRecording(true);
 
+    // Manipula os resultados da gravação (transcrição)
     recognition.onresult = (event) => {
       let finalTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
-        finalTranscript += event.results[i][0].transcript;
+        finalTranscript += event.results[i][0].transcript; // Pega o texto transcrito
       }
-      setTranscript(finalTranscript);
+      setTranscript(finalTranscript); // Atualiza o estado com a transcrição
     };
 
+    // Se ocorrer erro no reconhecimento de voz
     recognition.onerror = (event) => {
       console.error('Erro de reconhecimento de voz:', event.error);
-      setIsRecording(false);
+      setIsRecording(false); // Parar gravação em caso de erro
     };
 
+    // Quando o reconhecimento de voz para automaticamente
     recognition.onend = () => {
-      setIsRecording(false);
+      setIsRecording(false); // Atualiza o estado para parar a gravação
     };
   };
 
+  // Função para parar a gravação
   const handleStopRecording = () => {
     if (window.webkitSpeechRecognition) {
-      window.webkitSpeechRecognition.stop();
-      setIsRecording(false);
+      window.webkitSpeechRecognition.stop(); // Para a gravação
+      setIsRecording(false); // Atualiza o estado
     }
   };
 
@@ -53,7 +59,7 @@ function App() {
       ) : (
         <button onClick={handleStopRecording}>Parar Gravação</button>
       )}
-      <p>Transcrição: {transcript}</p>
+      <p>Transcrição: {transcript}</p> {/* Exibe a transcrição em tempo real */}
     </div>
   );
 }
