@@ -1,0 +1,4 @@
+git add .nojekyll
+git commit -m "Desabilitar Jekyll"
+git push origin gh-pages --force
+
