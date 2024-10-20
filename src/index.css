@@ -1,45 +1,49 @@
 /* Estilo global */
 body {
-  background-color: #f0f8ff; /* Cor de fundo suave */
+  background-color: #e0d6b4; /* Cor de fundo com um tom de dourado suave, remete a um ambiente mais clássico */
   font-family: 'Roboto', sans-serif; /* Fonte moderna */
-  color: #333; /* Cor do texto */
+  color: #fff; /* Cor de texto branca para contraste */
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
+  background-image: url('https://url_do_seu_fundo_pentecostal.jpg'); /* Imagem de fundo temática */
+  background-size: cover;
+  background-position: center;
 }
 
-/* Estilo do container principal */
-div {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilo da transcrição */
+.transcription-container {
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente para melhorar a legibilidade */
   padding: 20px;
-  max-width: 500px;
-  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+}
+
+.transcription-text {
+  font-size: 48px; /* Tamanho grande para projeção */
+  font-weight: bold;
+  color: #f1f1f1; /* Cor clara com contraste forte para ser projetada */
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para dar profundidade */
 }
 
 /* Botões */
 button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #ffcc00;
+  color: #333;
   border: none;
   padding: 10px 20px;
-  margin: 10px;
+  margin-top: 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 button:hover {
-  background-color: #45a049;
-}
-
-/* Transcrição */
-p {
-  font-size: 18px;
-  color: #555;
-  margin-top: 20px;
+  background-color: #e6b800;
 }
